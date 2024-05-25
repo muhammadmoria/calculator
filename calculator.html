@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEHBOOB KHAN</title>
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+
+        #calculator {
+            background-color: white;
+            border: 4px solid rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+
+        #result {
+            font-size: 36px;
+            text-align: right;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #00fff200;
+            color: #333;
+            font-size: 24px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #f8df00;
+        }
+
+        .operation-button {
+            background-color: #ff9900;
+            color: white;
+        }
+
+        .operation-button:hover {
+            background-color: #ffd000;
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <div id="result">0</div>
+        <div class="button-row">
+            <button class="button" onclick="appendToResult('7')">7</button>
+            <button class="button" onclick="appendToResult('8')">8</button>
+            <button class="button" onclick="appendToResult('9')">9</button>
+            <button class="button operation-button" onclick="appendToResult('+')">+</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendToResult('4')">4</button>
+            <button class="button" onclick="appendToResult('5')">5</button>
+            <button class="button" onclick="appendToResult('6')">6</button>
+            <button class="button operation-button" onclick="appendToResult('-')">-</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendToResult('1')">1</button>
+            <button class="button" onclick="appendToResult('2')">2</button>
+            <button class="button" onclick="appendToResult('3')">3</button>
+            <button class="button operation-button" onclick="appendToResult('*')">*</button>
+        </div>
+        <div class="button-row">
+            <button class="button" onclick="appendToResult('0')">0</button>
+            <button class="button" onclick="appendToResult('.')">.</button>
+            <button class="button operation-button" onclick="clearResult()">C</button>
+            <button class="button operation-button" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let currentResult = '0';
+
+        function appendToResult(value) {
+            if (currentResult === '0' && value !== '.') {
+                currentResult = '';
+            }
+            currentResult += value;
+            document.getElementById('result').textContent = currentResult;
+        }
+
+        function clearResult() {
+            currentResult = '0';
+            document.getElementById('result').textContent = currentResult;
+        }
+
+        function calculateResult() {
+            try {
+                currentResult = eval(currentResult);
+                document.getElementById('result').textContent = currentResult;
+            } catch (error) {
+                currentResult = 'Error';
+                document.getElementById('result').textContent = currentResult;
+            }
+        }
+    </script>
+</body>
+</html>
